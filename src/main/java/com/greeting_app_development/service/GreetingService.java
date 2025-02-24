@@ -6,10 +6,12 @@ import com.greeting_app_development.repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class GreetingService {
+
     private static final String template = "Hello, %s!";
 
     @Autowired
@@ -28,8 +30,13 @@ public class GreetingService {
         }
         return new Greeting(String.format(template, name));
     }
+
     public Greeting getGreetingById(Long id) {
         Optional<Greeting> greeting = greetingRepository.findById(id);
         return greeting.orElse(null); // Return the greeting if found, otherwise return null
+    }
+
+    public List<Greeting> getAllGreetings() {
+        return greetingRepository.findAll();
     }
 }
