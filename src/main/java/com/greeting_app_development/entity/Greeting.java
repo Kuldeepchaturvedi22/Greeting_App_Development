@@ -1,10 +1,13 @@
 package com.greeting_app_development.entity;
 
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Setter
 @Entity
 public class Greeting {
 
