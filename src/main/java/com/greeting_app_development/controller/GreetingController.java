@@ -22,4 +22,10 @@ public class GreetingController {
         userDTO.setLastName(lastName);
         return greetingService.getGreeting(userDTO);
     }
+
+    // Handles GET requests to /greeting/{id}
+    @GetMapping("/{id}")
+    public Greeting getGreetingById(@PathVariable Long id) {
+        return greetingService.getGreetingById(id);
+    }
 }

@@ -2,11 +2,18 @@ package com.greeting_app_development.service;
 
 import com.greeting_app_development.entity.Greeting;
 import com.greeting_app_development.dto.UserDTO;
+import com.greeting_app_development.repository.GreetingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class GreetingService {
     private static final String template = "Hello, %s!";
+
+    @Autowired
+    private GreetingRepository greetingRepository;
 
     public Greeting getGreeting(UserDTO userDTO) {
         String name;
@@ -20,5 +27,9 @@ public class GreetingService {
             name = "World";
         }
         return new Greeting(String.format(template, name));
+    }
+    public Greeting getGreetingById(Long id) {
+        Optional<Greeting> greeting = greetingRepository.findById(id);
+        return greeting.orElse(null); // Return the greeting if found, otherwise return null
     }
 }
